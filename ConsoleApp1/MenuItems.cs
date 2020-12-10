@@ -48,10 +48,18 @@ namespace RestaurantMenu
             IsNew = false;
 
         }
+        public void PrintItem()
+        {
+            Console.Write("Menu Item : " + this.Description + "\nPrice : " + this.Price.ToString("c"));
+            Console.Write("\nCategory: " + this.Category);
+            Console.Write("\nDate Added to Menu: " + this.DateAdded.ToString("MMMM dd, yyyy") + "\n");
+        }
 
-        
 
- 
+
+
+
+
 
     }
 }

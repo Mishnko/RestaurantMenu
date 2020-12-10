@@ -14,8 +14,14 @@ namespace RestaurantMenu
         {
             menuList = new List<MenuItems>();
         }
+        public Menu(string name, DateTime upDate)
+        {
+            RestaurantName = name;
+            LastUpdated = upDate;
+            menuList = new List<MenuItems>();
+        }
 
-       public void  PrintMenu ()
+        public void  PrintMenu ()
         {
             //loop through menulist
             Console.WriteLine("Restaurant Name: " + this.RestaurantName);
@@ -23,18 +29,39 @@ namespace RestaurantMenu
             Console.WriteLine("***************** Menu ********************");
             foreach (MenuItems m in menuList)
             {
-                Console.Write("Menu Item : " + m.Description + "\nPrice : " + m.Price.ToString("c"));
-                Console.Write("\nCategory: " + m.Category);
-                Console.Write("\nDate Added to Menu: " + m.DateAdded.ToString("MMMM dd, yyyy") + "\n");
+                m.PrintItem();
 
             }
             Console.WriteLine("***************** Thank You For Coming ********************");
             //compare Date Added > Last Update print new next to it
         }
+        
 
         public void AddItem(MenuItems item)
         {
             menuList.Add(item);
+        }
+        public void AddItem (String description, decimal price, String category)
+        {
+            MenuItems aItem = new MenuItems(description, price, category);
+            menuList.Add(aItem);
+
+        }
+        public void DeleteItem(string itemName)
+        {
+
+            foreach (MenuItems m in menuList)
+            {
+                if (m.Description.ToLower().Contains(itemName.ToLower()))
+                {
+
+                    menuList.Remove(m);
+                    Console.WriteLine(itemName + " is removed from the list");
+                    break;
+                }
+            }
+       
+
         }
     }
 }
